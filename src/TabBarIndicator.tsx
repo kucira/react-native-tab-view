@@ -3,13 +3,13 @@ import { StyleSheet, I18nManager, StyleProp, ViewStyle } from 'react-native';
 import Animated, {
   Easing as OldEasing,
   // @ts-ignore
-  EasingNode,
+  Easing,
 } from 'react-native-reanimated';
 
 import memoize from './memoize';
 import { Route, SceneRendererProps, NavigationState } from './types';
 
-const Easing = EasingNode || OldEasing;
+const EasingNode = Easing || OldEasing;
 
 export type GetTabWidth = (index: number) => number;
 
@@ -51,7 +51,7 @@ export default class TabBarIndicator<T extends Route> extends React.Component<
       Animated.timing(this.opacity, {
         duration: 150,
         toValue: 1,
-        easing: Easing.in(Easing.linear),
+        easing: EasingNode.in(EasingNode.linear),
       }).start();
     }
   };
