@@ -10,7 +10,7 @@ import { PanGestureHandler, State } from 'react-native-gesture-handler';
 import Animated, {
   Easing as OldEasing,
   // @ts-ignore
-  EasingNode,
+  Easing,
 } from 'react-native-reanimated';
 import memoize from './memoize';
 
@@ -25,7 +25,7 @@ import {
 
 type Binary = 0 | 1;
 
-const Easing = EasingNode || OldEasing;
+const EasingNode = Easing || OldEasing;
 
 export type Props<T extends Route> = PagerCommonProps & {
   onIndexChange: (index: number) => void;
@@ -115,7 +115,7 @@ const SPRING_VELOCITY_SCALE = 1;
 
 const TIMING_CONFIG = {
   duration: 200,
-  easing: Easing.out(Easing.cubic),
+  easing: EasingNode.out(EasingNode.cubic),
 };
 
 export default class Pager<T extends Route> extends React.Component<
